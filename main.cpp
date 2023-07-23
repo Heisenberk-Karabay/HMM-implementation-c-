@@ -58,14 +58,17 @@ int main() {
     }
 
 
-    // i also normalize the values by dividing them with the length of the data
     float transition_matrix[3][3] ={
             {eat_eat/len_array, drink_eat/len_array, smoke_eat/len_array},
             {eat_drink/len_array, drink_drink/len_array, smoke_drink/len_array},
             {eat_smoke/len_array, drink_smoke/len_array, smoke_smoke/len_array},
     };
 
-    cout << "The probability of drinkin beer then again drinking beer then eating is: ";
-    cout << (transition_matrix[1][1]) * (transition_matrix[0][1]);
+    // I normalized the outcomes so that for every scenario it adds up to 1
+    float multiplier_eat = 1/(transition_matrix[0][0] + transition_matrix[0][1] + transition_matrix[0][2]);
+    float multiplier_drink = 1/(transition_matrix[1][0] + transition_matrix[1][1] + transition_matrix[1][2]);
+    float multiplier_smoke = 1/(transition_matrix[2][0] + transition_matrix[2][1] + transition_matrix[2][2]);
+
+
     return 0;
 }
